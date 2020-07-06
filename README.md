@@ -1,39 +1,52 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# Requirements
 
-Welcome USER_NAME,
+```
+click==7.1.2
+dnspython==1.16.0
+Flask==1.1.2
+itsdangerous==1.1.0
+pymongo==3.10.1
+python-dotenv==0.13.0
+Werkzeug==1.0.1
+```
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+The requirements we are installing are:
 
-## Gitpod Reminders
+* `pip3 install flask`
+* `pip3 install pymongo` -- to use Mongo DB
+* `pip3 install dnspython` -- is to allow us to connect to Mongo with just the URL
+* `pip3 install python-dotenv` -- allows the use of `.env` files for environment variables
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## How to use requirements.txt
+```
+pip3 install -r requirements.txt
+```
+## Session keys
+Generated from https://randomkeygen.com/
 
-`python3 -m http.server`
+# Tasks
+What fields or information do we want to track for each todo
+* The task name
+* Due date
+* Whether it is done
+* Comments
 
-A blue button should appear to click: *Make Public*,
+# Flash Messages
+1. Ensure sessions are enabled. We have to make sure `app.secret_key` has been set
 
-Another blue button should appear to click: *Open Browser*.
+2. In the `layout.template.html` add in the code to display the flash messages:
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    ```
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for m in messages %}
+            <div class="alert alert-success">
+                {{m}}
+            </div>
+            {% endfor %}
+        {%endif%}
+    {%endwith%}
+    ```
 
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+    Check https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/ for documentation
+    on how to show a different class for errors
